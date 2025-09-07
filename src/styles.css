@@ -1,0 +1,71 @@
+@font-face {
+    font-family: 'comboregular';
+    src: url('./fonts/combo-regular-webfont.woff2') format('woff2'),
+         url('./fonts/combo-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+  font-family: 'comboregular', system-ui;
+}
+
+body {
+  background-color: rgb(113, 58, 147);
+  font-size: 1.5rem;
+  width: 100vw;
+  height: 100vh;
+  font-style: normal;
+
+}
+
+button {
+  border: 2px solid yellow;
+  background-color: rgb(174, 160, 160);
+  border-radius: 4px;
+  font: inherit;
+  transition: 0.4s ease;
+
+  &:hover {
+    background-color: rgb(156, 101, 207);
+  }
+}
+
+button[aria-expanded="true"] > span {
+  transition: 0.5s ease;
+  transform: rotate(180deg);
+  display: inline-block; /* span's inline display doesn't support transform */
+}
+
+.nav-bar {
+  border: 3px solid yellow;
+  border-radius: 5px;
+  background-color: rgb(61, 57, 57);
+  padding: 1rem;
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+}
+
+.dropdown {
+  position: relative;
+
+  & > * {
+    width: 100%;
+  }
+}
+
+.dropdown-menu > * {
+  border-top: none;
+}
+
+.dropdown-menu[aria-hidden='false'] {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
