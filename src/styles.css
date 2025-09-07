@@ -15,8 +15,17 @@ body {
   font-size: 1.5rem;
   width: 100vw;
   height: 100vh;
-  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+}
 
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
 }
 
 button {
@@ -69,3 +78,33 @@ button[aria-expanded="true"] > span {
   left: 0;
 }
 
+.carousel-container {
+  box-sizing: border-box;
+  height: 390px;
+  width: 390px;
+  border: 4px solid orangered;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+img {
+  width: 382px;
+  height: 390px;
+}
+
+.slides-container {
+  display: flex;
+  gap: 0px;
+
+  position: absolute;
+  left: 0%;
+}
+
+.change-slide {
+  box-sizing: border-box;
+  width: 390px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

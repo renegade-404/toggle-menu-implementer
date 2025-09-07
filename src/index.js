@@ -1,18 +1,18 @@
 import './styles.css';
+import { toggleMenu } from './dropdown-menu-toggle';
+import { imageCarousel } from './image-carousel';
+import kalista from "./imgs/kalista-img.jpg";
+import thresh from "./imgs/thresh-img.jpg";
+import hecarim from "./imgs/hecarim-img.jpg";
+import viego from "./imgs/viego-img.jpg";
 
-function implementToggleMenu (button, menu) {
-  const openOrClose = () => {
-    const isExpanded = button.getAttribute("aria-expanded") === "true";
-    button.setAttribute('aria-expanded', String(!isExpanded));
-    menu.hidden = isExpanded;
-    menu.ariaHidden = isExpanded;
-  }
+toggleMenu();
 
-  button.addEventListener("click", openOrClose);
+const imgs = {
+  char1: kalista,
+  char2: thresh,
+  char3: hecarim,
+  char4: viego,
 }
-const toggleButtons = document.querySelectorAll('[aria-haspopup]');
 
-toggleButtons.forEach(button => {
-  const menu = button.parentElement.lastElementChild;
-  implementToggleMenu(button, menu);
-})
+imageCarousel(imgs);
