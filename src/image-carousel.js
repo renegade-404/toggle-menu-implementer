@@ -23,7 +23,7 @@ export const imageCarousel = function (imgObject) {
       slidesContainer.style.left = `${newPosition}px`;
     } else if (button.target.classList.contains("right")) {
       const newPosition = slidePositionLeft - slideWidth;
-      if (newPosition === (slideWidth*(-4))) return;
+      if (newPosition === (slideWidth*(-4))) return; // change to length
       slidesContainer.style.left = `${newPosition}px`;
     };
     
