@@ -1,5 +1,5 @@
 {
-  "name": "dropdown-menu",
+  "name": "dropdown-menu-toggle",
   "version": "1.0.0",
   "description": "toggle menu implementer",
   "main": "index.js",
@@ -13,7 +13,7 @@
     "url": "git+https://github.com/renegade-404/toggle-menu-implementer.git"
   },
   "keywords": [],
-  "author": "maru",
+  "author": "maru <mypcisrenegade@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "git+https://github.com/renegade-404/toggle-menu-implementer/issues"
