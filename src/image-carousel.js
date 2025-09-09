@@ -4,7 +4,8 @@
 
 export const imageCarousel = function (imgObject) {
   const slidesContainer = document.querySelector(".slides-container");
-  const swipeButtons = document.querySelectorAll(".change-btn");
+  const swipeRightButton = document.querySelector(".change-btn-right");
+  const swipeLeftButton = document.querySelector(".change-btn-left");
 
   for (let key in imgObject) {
     const imgElement = document.createElement("img");
@@ -16,23 +17,23 @@ export const imageCarousel = function (imgObject) {
   const slideWidth = parseFloat(getComputedStyle(firstSlide).width);
   const numberOfSlides = slidesContainer.childNodes.length;
 
-  swipeButtons.forEach(btn => {
-    btn.addEventListener("click", (e) => swipeFunctionality(e))
-  })
+  swipeRightButton.addEventListener("click", swipeRight);
+  swipeLeftButton.addEventListener("click", swipeLeft);
 
-  function swipeFunctionality(button) {
+  function swipeRight() {
     const currentPosition = currentSlidePosition();
+    const newPosition = currentPosition - slideWidth;
+    
+    if (newPosition === (slideWidth*(-numberOfSlides))) return;
+    slidesContainer.style.left = `${newPosition}px`;
+  }
 
-    if (button.target.classList.contains("left")) {
-      const newPosition = currentPosition + slideWidth;
-      if (newPosition === slideWidth) return;
-      slidesContainer.style.left = `${newPosition}px`;
-    } else if (button.target.classList.contains("right")) {
-      const newPosition = currentPosition - slideWidth;
-      if (newPosition === (slideWidth*(-numberOfSlides))) return;
-      slidesContainer.style.left = `${newPosition}px`;
-    };
+  function swipeLeft () {
+    const currentPosition = currentSlidePosition();
+    const newPosition = currentPosition + slideWidth;
 
+    if (newPosition === slideWidth) return;
+    slidesContainer.style.left = `${newPosition}px`;
   }
 
   function currentSlidePosition () {
