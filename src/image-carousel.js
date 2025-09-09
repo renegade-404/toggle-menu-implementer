@@ -19,11 +19,38 @@ export const imageCarousel = function (imgObject) {
 
   swipeRightButton.addEventListener("click", swipeRight);
   swipeLeftButton.addEventListener("click", swipeLeft);
+  loopSlides();
+
+  async function loopSlides() {
+    while (true) {
+      await fiveSecondsDelay(changeAutomaticSlide);
+      const curt = currentSlidePosition()
+      if ( curt === (slideWidth*(-numberOfSlides))) {
+        slidesContainer.style.left = 0;
+      }
+    }
+  }
+
+ function fiveSecondsDelay(changeSlide) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      changeSlide();
+      resolve();
+    }, 2000)
+  })
+ }
+
+ function changeAutomaticSlide () {
+   const currentPosition = currentSlidePosition();
+   const newPosition = currentPosition - slideWidth;
+   slidesContainer.style.left = `${newPosition}px`;
+ }
+  
 
   function swipeRight() {
     const currentPosition = currentSlidePosition();
     const newPosition = currentPosition - slideWidth;
-    
+
     if (newPosition === (slideWidth*(-numberOfSlides))) return;
     slidesContainer.style.left = `${newPosition}px`;
   }
