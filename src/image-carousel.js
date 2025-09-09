@@ -4,6 +4,8 @@
 
 export const imageCarousel = function (imgObject) {
   const slidesContainer = document.querySelector(".slides-container");
+  const indicatorsContainer = document.querySelector(".indicators-list");
+  const slidesPositionList = [];
   const swipeRightButton = document.querySelector(".change-btn-right");
   const swipeLeftButton = document.querySelector(".change-btn-left");
 
@@ -17,6 +19,22 @@ export const imageCarousel = function (imgObject) {
   const slideWidth = parseFloat(getComputedStyle(firstSlide).width);
   const numberOfSlides = slidesContainer.childNodes.length;
 
+  // create indicators for slides and list of position coordinates
+  for (let i = 0; i < numberOfSlides; i++) {
+    const liElement = document.createElement("li");
+    const buttonIndicator = document.createElement("button");
+    buttonIndicator.classList.add(`${String(i)}`, "ind-btn");
+    liElement.appendChild(buttonIndicator);
+    indicatorsContainer.appendChild(liElement);
+
+    slidesPositionList.push(slideWidth*(-i));
+  }
+
+  const indicatorButtons = document.querySelectorAll(".ind-btn");
+  
+  indicatorButtons.forEach(btn => {
+    btn.addEventListener("click", (e) => indicatorSlidePositionChange(e));
+  })
   swipeRightButton.addEventListener("click", swipeRight);
   swipeLeftButton.addEventListener("click", swipeLeft);
   loopSlides();
@@ -59,6 +77,13 @@ export const imageCarousel = function (imgObject) {
 
   function currentSlidePosition() {
     return parseFloat(window.getComputedStyle(slidesContainer).getPropertyValue("left"));
+  }
+
+  function indicatorSlidePositionChange (e) {
+    const indicatorNumber = [...e.target.classList].filter(num => num != "ind-btn")[0];
+    slidesPositionList.forEach((position, index) => {
+      if (index === Number(indicatorNumber)) slidesContainer.style.left = `${position}px`
+    })
   }
 
 }
