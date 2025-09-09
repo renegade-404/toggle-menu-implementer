@@ -109,3 +109,27 @@ img {
   justify-content: space-between;
   align-items: center;
 }
+
+.indicators-container {
+  box-sizing: border-box;
+  width: 320px;
+}
+
+.indicators-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+}
+
+.ind-btn {
+  appearance: none;
+  border: 3px solid white;
+  border-radius: 20px;
+  padding: 5px;
+
+  &:hover {
+    background-color: crimson;
+  }
+}
