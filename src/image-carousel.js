@@ -23,39 +23,33 @@ export const imageCarousel = function (imgObject) {
 
   async function loopSlides() {
     while (true) {
-      await fiveSecondsDelay(changeAutomaticSlide);
-      const curt = currentSlidePosition()
-      if ( curt === (slideWidth*(-numberOfSlides))) {
+      await fiveSecondsDelay();
+      if (currentSlidePosition() === (slideWidth * (-numberOfSlides))) {
         slidesContainer.style.left = 0;
       }
     }
   }
 
- function fiveSecondsDelay(changeSlide) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      changeSlide();
-      resolve();
-    }, 2000)
-  })
- }
-
- function changeAutomaticSlide () {
-   const currentPosition = currentSlidePosition();
-   const newPosition = currentPosition - slideWidth;
-   slidesContainer.style.left = `${newPosition}px`;
- }
-  
+  function fiveSecondsDelay() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const currentPosition = currentSlidePosition();
+        const newPosition = currentPosition - slideWidth;
+        slidesContainer.style.left = `${newPosition}px`;
+        resolve();
+      }, 2000)
+    })
+  }
 
   function swipeRight() {
     const currentPosition = currentSlidePosition();
     const newPosition = currentPosition - slideWidth;
 
-    if (newPosition === (slideWidth*(-numberOfSlides))) return;
+    if (newPosition === (slideWidth * (-numberOfSlides))) return;
     slidesContainer.style.left = `${newPosition}px`;
   }
 
-  function swipeLeft () {
+  function swipeLeft() {
     const currentPosition = currentSlidePosition();
     const newPosition = currentPosition + slideWidth;
 
@@ -63,7 +57,7 @@ export const imageCarousel = function (imgObject) {
     slidesContainer.style.left = `${newPosition}px`;
   }
 
-  function currentSlidePosition () {
+  function currentSlidePosition() {
     return parseFloat(window.getComputedStyle(slidesContainer).getPropertyValue("left"));
   }
 
